@@ -1,0 +1,28 @@
+{
+  "name": "prompt-manager-test-simulator",
+  "version": "1.0.0",
+  "description": "Advanced test simulator for Prompt Management System",
+  "main": "index.ts",
+  "scripts": {
+    "test": "tsx index.ts",
+    "test:quick": "tsx quick-test.ts",
+    "test:api": "tsx index.ts --suite=api",
+    "test:integration": "tsx index.ts --suite=integration",
+    "test:all": "tsx index.ts",
+    "test:verbose": "LOG_LEVEL=verbose tsx index.ts",
+    "test:debug": "LOG_LEVEL=debug tsx index.ts",
+    "build": "tsc",
+    "clean": "rm -rf dist coverage reports"
+  },
+  "keywords": ["testing", "simulator", "prompt-management"],
+  "author": "BRAINixIDEX",
+  "license": "MIT",
+  "dependencies": {
+    "@prisma/client": "^5.19.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.3.3"
+  }
+}

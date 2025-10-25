@@ -1,0 +1,134 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./prompts.db"
+}
+
+model Prompt {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  content     String   // The actual prompt text
+  type        String   // PromptType: TEXT, CODE, IMAGE, VIDEO, AUDIO, CUSTOM
+  language    String   @default("EN") // Language: EN, FA
+  
+  // Metadata
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  lastUsedAt  DateTime?
+  usageCount  Int      @default(0)
+  
+  // Relationships
+  tags        PromptTag[]
+  versions    PromptVersion[]
+  executions  Execution[]
+  embedding   Embedding?
+  
+  // Soft delete
+  deletedAt   DateTime?
+  
+  @@index([type, deletedAt])
+  @@index([updatedAt])
+  @@map("prompts")
+}
+
+model PromptVersion {
+  id          String   @id @default(cuid())
+  promptId    String
+  prompt      Prompt   @relation(fields: [promptId], references: [id], onDelete: Cascade)
+  
+  versionNumber Int
+  content     String
+  changeLog   String?  // User-provided description of changes
+  diffPatch   String?  // Optional: Store diff instead of full content
+  
+  createdAt   DateTime @default(now())
+  createdBy   String?  // Future: Multi-user support
+  
+  @@unique([promptId, versionNumber])
+  @@index([promptId, createdAt])
+  @@map("prompt_versions")
+}
+
+model Tag {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  color       String?  // Hex color for UI
+  icon        String?  // Icon identifier
+  
+  prompts     PromptTag[]
+  
+  createdAt   DateTime @default(now())
+  
+  @@map("tags")
+}
+
+model PromptTag {
+  promptId    String
+  tagId       String
+  
+  prompt      Prompt   @relation(fields: [promptId], references: [id], onDelete: Cascade)
+  tag         Tag      @relation(fields: [tagId], references: [id], onDelete: Cascade)
+  
+  assignedAt  DateTime @default(now())
+  
+  @@id([promptId, tagId])
+  @@map("prompt_tags")
+}
+
+model Execution {
+  id          String   @id @default(cuid())
+  promptId    String
+  prompt      Prompt   @relation(fields: [promptId], references: [id], onDelete: Cascade)
+  
+  // Execution details
+  input       String?  // Serialized input parameters
+  output      String?  // Execution result
+  status      String   // ExecutionStatus: PENDING, RUNNING, SUCCESS, FAILED, CANCELLED, TIMEOUT
+  errorMsg    String?
+  
+  // Performance metrics
+  startedAt   DateTime @default(now())
+  completedAt DateTime?
+  duration    Int?     // Milliseconds
+  
+  // Resource usage
+  memoryUsed  Int?     // Bytes
+  tokensUsed  Int?     // For LLM calls
+  
+  @@index([promptId, startedAt])
+  @@map("executions")
+}
+
+model Embedding {
+  id          String   @id @default(cuid())
+  promptId    String   @unique
+  prompt      Prompt   @relation(fields: [promptId], references: [id], onDelete: Cascade)
+  
+  // Vector storage (stored as JSON blob in SQLite)
+  vector      String   // JSON array of float values
+  model       String   // e.g., "sentence-transformers/all-MiniLM-L6-v2"
+  dimension   Int      // Vector dimension (e.g., 384)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@index([model])
+  @@map("embeddings")
+}
+
+model AppSettings {
+  id          String   @id @default(cuid())
+  key         String   @unique
+  value       String   // JSON-serialized value
+  
+  updatedAt   DateTime @updatedAt
+  
+  @@map("app_settings")
+}

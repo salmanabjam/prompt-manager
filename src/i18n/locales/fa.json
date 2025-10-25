@@ -1,0 +1,226 @@
+{
+  "app": {
+    "name": "مدیریت پرامپت",
+    "tagline": "سازماندهی، نسخه‌بندی و اجرای پرامپت‌های هوش مصنوعی"
+  },
+  "common": {
+    "save": "ذخیره",
+    "cancel": "لغو",
+    "delete": "حذف",
+    "edit": "ویرایش",
+    "create": "ایجاد",
+    "add": "افزودن",
+    "retry": "تلاش مجدد",
+    "close": "بستن",
+    "search": "جستجو",
+    "filter": "فیلتر",
+    "sort": "مرتب‌سازی",
+    "export": "خروجی",
+    "import": "ورودی",
+    "copy": "کپی",
+    "duplicate": "تکثیر",
+    "loading": "در حال بارگذاری...",
+    "noResults": "نتیجه‌ای یافت نشد",
+    "confirm": "تایید",
+    "yes": "بله",
+    "no": "خیر"
+  },
+  "navigation": {
+    "library": "کتابخانه",
+    "tags": "برچسب‌ها",
+    "recent": "اخیر",
+    "favorites": "علاقه‌مندی‌ها",
+    "statistics": "آمار",
+    "logs": "گزارش‌ها",
+    "settings": "تنظیمات"
+  },
+  "prompt": {
+    "title": "عنوان",
+    "description": "توضیحات",
+    "content": "محتوا",
+    "type": "نوع",
+    "language": "زبان",
+    "tags": "برچسب‌ها",
+    "createdAt": "تاریخ ایجاد",
+    "updatedAt": "آخرین به‌روزرسانی",
+    "usageCount": "دفعات استفاده",
+    "createNew": "ایجاد پرامپت جدید",
+    "createPrompt": "ایجاد پرامپت",
+    "editPrompt": "ویرایش پرامپت",
+    "deletePrompt": "حذف پرامپت",
+    "duplicatePrompt": "تکثیر پرامپت",
+    "executePrompt": "اجرای پرامپت",
+    "versionHistory": "تاریخچه نسخه‌ها",
+    "titlePlaceholder": "عنوان پرامپت را وارد کنید...",
+    "descriptionPlaceholder": "توضیحات اختیاری...",
+    "contentPlaceholder": "پرامپت خود را اینجا بنویسید...",
+    "placeholder": {
+      "title": "عنوان پرامپت را وارد کنید...",
+      "description": "توضیحات اختیاری...",
+      "content": "پرامپت خود را اینجا بنویسید..."
+    },
+    "types": {
+      "text": "متن",
+      "code": "کد",
+      "image": "تصویر",
+      "video": "ویدیو",
+      "audio": "صوت",
+      "TEXT": "متن",
+      "CODE": "کد",
+      "IMAGE": "تصویر",
+      "VIDEO": "ویدیو",
+      "AUDIO": "صوت",
+      "CUSTOM": "سفارشی"
+    }
+  },
+  "version": {
+    "title": "نسخه‌ها",
+    "version": "نسخه",
+    "changelog": "تغییرات",
+    "restore": "بازگردانی",
+    "compare": "مقایسه",
+    "current": "فعلی",
+    "createVersion": "ایجاد نسخه جدید",
+    "placeholder": {
+      "changelog": "تغییرات را شرح دهید..."
+    }
+  },
+  "tag": {
+    "title": "برچسب‌ها",
+    "tags": "برچسب‌ها",
+    "addTag": "افزودن برچسب",
+    "createTag": "ایجاد برچسب",
+    "editTag": "ویرایش برچسب",
+    "deleteTag": "حذف برچسب",
+    "color": "رنگ",
+    "icon": "آیکون",
+    "promptCount": "{{count}} پرامپت",
+    "placeholder": {
+      "name": "نام برچسب..."
+    }
+  },
+  "search": {
+    "title": "جستجو",
+    "placeholder": "جستجوی پرامپت‌ها...",
+    "semanticSearch": "جستجوی معنایی",
+    "fullTextSearch": "جستجوی متنی کامل",
+    "filters": "فیلترها",
+    "results": "{{count}} نتیجه یافت شد",
+    "noResults": "هیچ پرامپتی با جستجوی شما مطابقت ندارد"
+  },
+  "execution": {
+    "title": "اجرا",
+    "run": "اجرا",
+    "stop": "توقف",
+    "input": "ورودی",
+    "output": "خروجی",
+    "status": "وضعیت",
+    "duration": "مدت زمان",
+    "memory": "حافظه",
+    "tokens": "توکن‌ها",
+    "history": "تاریخچه اجرا",
+    "statuses": {
+      "PENDING": "در انتظار",
+      "RUNNING": "در حال اجرا",
+      "SUCCESS": "موفق",
+      "FAILED": "ناموفق",
+      "CANCELLED": "لغو شده",
+      "TIMEOUT": "زمان پایان یافته"
+    }
+  },
+  "settings": {
+    "title": "تنظیمات",
+    "general": "عمومی",
+    "appearance": "ظاهر",
+    "editor": "ویرایشگر",
+    "advanced": "پیشرفته",
+    "theme": {
+      "label": "تم",
+      "light": "روشن",
+      "dark": "تیره",
+      "system": "سیستم"
+    },
+    "language": {
+      "label": "زبان",
+      "en": "English",
+      "fa": "فارسی"
+    },
+    "density": {
+      "label": "تراکم",
+      "compact": "فشرده",
+      "comfortable": "راحت",
+      "spacious": "گشاد"
+    },
+    "semanticSearch": "فعال‌سازی جستجوی معنایی",
+    "autoSave": "ذخیره خودکار",
+    "autoVersion": "نسخه‌بندی خودکار هنگام ذخیره"
+  },
+  "statistics": {
+    "title": "آمار",
+    "overview": "نمای کلی",
+    "totalPrompts": "کل پرامپت‌ها",
+    "totalTags": "کل برچسب‌ها",
+    "totalExecutions": "کل اجراها",
+    "mostUsed": "پرکاربردترین",
+    "recentActivity": "فعالیت اخیر",
+    "byType": "بر اساس نوع",
+    "byLanguage": "بر اساس زبان"
+  },
+  "export": {
+    "title": "خروجی",
+    "format": "فرمت",
+    "selectAll": "انتخاب همه",
+    "download": "دانلود",
+    "formats": {
+      "json": "JSON",
+      "markdown": "Markdown",
+      "csv": "CSV",
+      "txt": "متن"
+    }
+  },
+  "import": {
+    "title": "ورودی",
+    "dropzone": "فایل‌ها را اینجا رها کنید یا کلیک کنید",
+    "processing": "در حال پردازش...",
+    "success": "{{count}} پرامپت با موفقیت وارد شد",
+    "errors": "{{count}} خطا رخ داد",
+    "selectFile": "انتخاب فایل"
+  },
+  "notifications": {
+    "promptCreated": "پرامپت با موفقیت ایجاد شد",
+    "promptUpdated": "پرامپت با موفقیت به‌روزرسانی شد",
+    "promptDeleted": "پرامپت با موفقیت حذف شد",
+    "versionCreated": "نسخه با موفقیت ایجاد شد",
+    "tagCreated": "برچسب با موفقیت ایجاد شد",
+    "settingsSaved": "تنظیمات با موفقیت ذخیره شد",
+    "copiedToClipboard": "در کلیپ‌بورد کپی شد",
+    "executionStarted": "اجرا آغاز شد",
+    "executionCompleted": "اجرا با موفقیت تکمیل شد",
+    "executionFailed": "اجرا ناموفق بود",
+    "error": "خطایی رخ داد"
+  },
+  "errors": {
+    "required": "این فیلد الزامی است",
+    "tooShort": "خیلی کوتاه است (حداقل {{min}} کاراکتر)",
+    "tooLong": "خیلی بلند است (حداکثر {{max}} کاراکتر)",
+    "invalidFormat": "فرمت نامعتبر است",
+    "notFound": "یافت نشد",
+    "serverError": "خطای سرور رخ داد",
+    "networkError": "خطای شبکه رخ داد",
+    "createFailed": "ایجاد ناموفق بود"
+  },
+  "dialogs": {
+    "deletePrompt": {
+      "title": "حذف پرامپت",
+      "message": "آیا مطمئن هستید که می‌خواهید این پرامپت را حذف کنید؟ این عمل قابل بازگشت نیست."
+    },
+    "deleteTag": {
+      "title": "حذف برچسب",
+      "message": "آیا مطمئن هستید که می‌خواهید این برچسب را حذف کنید؟ از همه پرامپت‌ها حذف خواهد شد."
+    },
+    "unsavedChanges": {
+      "title": "تغییرات ذخیره نشده",
+      "message": "شما تغییراتی دارید که ذخیره نشده‌اند. می‌خواهید قبل از خروج ذخیره کنید؟"
+    }
+  }
+}
