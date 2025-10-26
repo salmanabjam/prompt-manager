@@ -6,10 +6,13 @@
   "common": {
     "save": "ذخیره",
     "cancel": "لغو",
+    "done": "تمام",
     "delete": "حذف",
+    "deleting": "در حال حذف...",
     "edit": "ویرایش",
     "create": "ایجاد",
     "add": "افزودن",
+    "hide": "مخفی کردن",
     "retry": "تلاش مجدد",
     "close": "بستن",
     "search": "جستجو",
@@ -21,6 +24,7 @@
     "duplicate": "تکثیر",
     "loading": "در حال بارگذاری...",
     "noResults": "نتیجه‌ای یافت نشد",
+    "results": "{{count}} نتیجه",
     "confirm": "تایید",
     "yes": "بله",
     "no": "خیر"
@@ -41,12 +45,17 @@
     "type": "نوع",
     "language": "زبان",
     "tags": "برچسب‌ها",
+    "created": "تاریخ ایجاد",
     "createdAt": "تاریخ ایجاد",
+    "updated": "آخرین به‌روزرسانی",
     "updatedAt": "آخرین به‌روزرسانی",
     "usageCount": "دفعات استفاده",
     "createNew": "ایجاد پرامپت جدید",
     "createPrompt": "ایجاد پرامپت",
+    "createPromptDescription": "جزئیات زیر را برای ایجاد پرامپت جدید پر کنید",
     "editPrompt": "ویرایش پرامپت",
+    "editPromptDescription": "جزئیات پرامپت را در زیر به‌روزرسانی کنید",
+    "uploadImagesOptional": "به صورت اختیاری می‌توانید برای این پرامپت تصویر آپلود کنید",
     "deletePrompt": "حذف پرامپت",
     "duplicatePrompt": "تکثیر پرامپت",
     "executePrompt": "اجرای پرامپت",
@@ -54,6 +63,17 @@
     "titlePlaceholder": "عنوان پرامپت را وارد کنید...",
     "descriptionPlaceholder": "توضیحات اختیاری...",
     "contentPlaceholder": "پرامپت خود را اینجا بنویسید...",
+    "dragDropImages": "تصاویر را بکشید و اینجا رها کنید، یا کلیک کنید",
+    "dropImagesHere": "تصاویر را اینجا رها کنید...",
+    "supportedFormats": "فرمت‌های پشتیبانی شده",
+    "readyToUpload": "آماده آپلود",
+    "uploading": "در حال آپلود",
+    "uploadImages": "آپلود تصاویر",
+    "images": "تصاویر",
+    "addImages": "افزودن تصاویر",
+    "noImages": "هنوز تصویری وجود ندارد",
+    "deleteImageTitle": "حذف تصویر",
+    "deleteImageConfirm": "آیا مطمئن هستید که می‌خواهید {{filename}} را حذف کنید؟ این عمل قابل بازگشت نیست.",
     "placeholder": {
       "title": "عنوان پرامپت را وارد کنید...",
       "description": "توضیحات اختیاری...",
@@ -90,6 +110,7 @@
     "tags": "برچسب‌ها",
     "addTag": "افزودن برچسب",
     "createTag": "ایجاد برچسب",
+    "createTagDescription": "یک برچسب جدید برای سازماندهی پرامپت‌های خود ایجاد کنید",
     "editTag": "ویرایش برچسب",
     "deleteTag": "حذف برچسب",
     "color": "رنگ",
@@ -98,6 +119,9 @@
     "placeholder": {
       "name": "نام برچسب..."
     }
+  },
+  "images": {
+    "title": "تصاویر"
   },
   "search": {
     "title": "جستجو",
@@ -188,6 +212,7 @@
   },
   "notifications": {
     "promptCreated": "پرامپت با موفقیت ایجاد شد",
+    "promptCreatedDesc": "پرامپت شما ایجاد شد",
     "promptUpdated": "پرامپت با موفقیت به‌روزرسانی شد",
     "promptDeleted": "پرامپت با موفقیت حذف شد",
     "versionCreated": "نسخه با موفقیت ایجاد شد",
@@ -197,7 +222,8 @@
     "executionStarted": "اجرا آغاز شد",
     "executionCompleted": "اجرا با موفقیت تکمیل شد",
     "executionFailed": "اجرا ناموفق بود",
-    "error": "خطایی رخ داد"
+    "error": "خطایی رخ داد",
+    "success": "موفقیت"
   },
   "errors": {
     "required": "این فیلد الزامی است",
@@ -207,7 +233,12 @@
     "notFound": "یافت نشد",
     "serverError": "خطای سرور رخ داد",
     "networkError": "خطای شبکه رخ داد",
-    "createFailed": "ایجاد ناموفق بود"
+    "createFailed": "ایجاد ناموفق بود",
+    "uploadFailed": "آپلود تصویر ناموفق بود",
+    "fileTooLarge": "حجم فایل بیش از حد مجاز است",
+    "invalidFileType": "نوع فایل نامعتبر است",
+    "error": "خطا",
+    "tagAlreadyExists": "برچسبی با این نام قبلاً وجود دارد"
   },
   "dialogs": {
     "deletePrompt": {

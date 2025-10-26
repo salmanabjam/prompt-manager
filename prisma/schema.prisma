@@ -29,6 +29,7 @@ model Prompt {
   versions    PromptVersion[]
   executions  Execution[]
   embedding   Embedding?
+  images      PromptImage[]
   
   // Soft delete
   deletedAt   DateTime?
@@ -121,6 +122,31 @@ model Embedding {
   
   @@index([model])
   @@map("embeddings")
+}
+
+model PromptImage {
+  id          String   @id @default(cuid())
+  promptId    String
+  prompt      Prompt   @relation(fields: [promptId], references: [id], onDelete: Cascade)
+  
+  // File details
+  filename    String   // Original filename
+  storedName  String   // UUID-based stored filename
+  mimeType    String   // image/jpeg, image/png, image/gif, image/webp
+  size        Int      // File size in bytes
+  
+  // Paths
+  path        String   // Full path to original image
+  thumbnail   String   // Path to thumbnail (200x200px)
+  
+  // Image metadata
+  width       Int?     // Original width in pixels
+  height      Int?     // Original height in pixels
+  
+  createdAt   DateTime @default(now())
+  
+  @@index([promptId])
+  @@map("prompt_images")
 }
 
 model AppSettings {

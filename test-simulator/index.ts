@@ -6,6 +6,7 @@
 import { TestSimulator } from './core/TestSimulator';
 import { createApiTestSuite } from './suites/api.suite';
 import { createIntegrationTestSuite } from './suites/integration.suite';
+import { createFavoritesTestSuite } from './suites/favorites.suite';
 
 async function main() {
   console.log('🚀 Prompt Management System - Test Simulator');
@@ -32,6 +33,7 @@ async function main() {
   
   simulator.suite(createApiTestSuite(config.apiBaseUrl));
   simulator.suite(createIntegrationTestSuite(config.apiBaseUrl));
+  simulator.suite(createFavoritesTestSuite(config.apiBaseUrl));
 
   console.log('');
 

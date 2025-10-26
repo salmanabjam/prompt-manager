@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from './ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from './ui/dialog';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { Textarea } from './ui/textarea';
 import { Button } from './ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { Badge } from './ui/badge';
-import { X } from 'lucide-react';
+import { X, ImagePlus } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useToast } from '../hooks/use-toast';
 import { logger, LogCategory } from '../lib/logger';
+import { useQueryClient } from '@tanstack/react-query';
+import { ImageGallery } from './ImageGallery';
+import { ImageUploader } from './ImageUploader';
 
 interface Prompt {
   id: string;
@@ -30,6 +33,7 @@ interface EditPromptDialogProps {
 export function EditPromptDialog({ isOpen, onClose, prompt, onSuccess }: EditPromptDialogProps) {
   const { t } = useTranslation();
   const { toast } = useToast();
+  const queryClient = useQueryClient();
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -39,6 +43,7 @@ export function EditPromptDialog({ isOpen, onClose, prompt, onSuccess }: EditPro
   });
   const [tagInput, setTagInput] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showImageUploader, setShowImageUploader] = useState(false);
 
   useEffect(() => {
     if (prompt) {
@@ -72,6 +77,11 @@ export function EditPromptDialog({ isOpen, onClose, prompt, onSuccess }: EditPro
       }
 
       logger.apiSuccess('PATCH', `/api/prompts/${prompt.id}`, await response.json());
+      
+      // Invalidate queries to refresh data
+      queryClient.invalidateQueries({ queryKey: ['prompts'] });
+      queryClient.invalidateQueries({ queryKey: ['tags'] });
+      
       toast({
         title: t('notifications.promptUpdated'),
         description: 'Changes saved successfully',
@@ -119,6 +129,9 @@ export function EditPromptDialog({ isOpen, onClose, prompt, onSuccess }: EditPro
       <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>{t('prompt.editPrompt')}</DialogTitle>
+          <DialogDescription>
+            {t('prompt.editPromptDescription')}
+          </DialogDescription>
         </DialogHeader>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -201,7 +214,38 @@ export function EditPromptDialog({ isOpen, onClose, prompt, onSuccess }: EditPro
             </div>
           </div>
 
-          <div className="flex justify-end gap-2 pt-4">
+          <div className="space-y-4 border-t pt-4">
+            <div className="flex items-center justify-between">
+              <Label className="text-base font-semibold">{t('prompt.images')}</Label>
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                onClick={() => setShowImageUploader(!showImageUploader)}
+                className="gap-2"
+              >
+                <ImagePlus className="h-4 w-4" />
+                {showImageUploader ? t('common.hide') : t('prompt.addImages')}
+              </Button>
+            </div>
+
+            {prompt && <ImageGallery promptId={prompt.id} />}
+
+            {showImageUploader && prompt && (
+              <div className="border rounded-lg p-4 bg-muted/50">
+                <ImageUploader
+                  promptId={prompt.id}
+                  onUploadComplete={() => {
+                    // Optionally refresh gallery or close uploader
+                    setShowImageUploader(false);
+                  }}
+                  maxFiles={5}
+                />
+              </div>
+            )}
+          </div>
+
+          <div className="flex justify-end gap-2 pt-4 border-t">
             <Button type="button" variant="outline" onClick={onClose} disabled={isSubmitting}>
               {t('common.cancel')}
             </Button>

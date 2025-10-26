@@ -39,8 +39,17 @@ export default async function tagRoutes(fastify: FastifyInstance) {
       const tag = await tagService.create(data);
       
       reply.code(201).send(tag);
-    } catch (error) {
+    } catch (error: any) {
       fastify.log.error(error);
+      
+      // Handle unique constraint violation
+      if (error.code === 'P2002') {
+        return reply.code(409).send({ 
+          error: 'Tag with this name already exists',
+          field: 'name'
+        });
+      }
+      
       reply.code(500).send({ error: 'Failed to create tag' });
     }
   });

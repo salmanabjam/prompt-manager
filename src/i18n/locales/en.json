@@ -6,10 +6,13 @@
   "common": {
     "save": "Save",
     "cancel": "Cancel",
+    "done": "Done",
     "delete": "Delete",
+    "deleting": "Deleting...",
     "edit": "Edit",
     "create": "Create",
     "add": "Add",
+    "hide": "Hide",
     "retry": "Retry",
     "close": "Close",
     "search": "Search",
@@ -21,6 +24,7 @@
     "duplicate": "Duplicate",
     "loading": "Loading...",
     "noResults": "No results found",
+    "results": "{{count}} results",
     "confirm": "Confirm",
     "yes": "Yes",
     "no": "No"
@@ -46,7 +50,10 @@
     "usageCount": "Times used",
     "createNew": "Create New Prompt",
     "createPrompt": "Create Prompt",
+    "createPromptDescription": "Fill in the details below to create a new prompt",
     "editPrompt": "Edit Prompt",
+    "editPromptDescription": "Update the prompt details below",
+    "uploadImagesOptional": "You can optionally upload images for this prompt",
     "deletePrompt": "Delete Prompt",
     "duplicatePrompt": "Duplicate Prompt",
     "executePrompt": "Execute Prompt",
@@ -54,6 +61,17 @@
     "titlePlaceholder": "Enter prompt title...",
     "descriptionPlaceholder": "Optional description...",
     "contentPlaceholder": "Write your prompt here...",
+    "dragDropImages": "Drag & drop images here, or click to browse",
+    "dropImagesHere": "Drop images here...",
+    "supportedFormats": "Supported formats",
+    "readyToUpload": "Ready to upload",
+    "uploading": "Uploading",
+    "uploadImages": "Upload Images",
+    "images": "Images",
+    "addImages": "Add Images",
+    "noImages": "No images yet",
+    "deleteImageTitle": "Delete Image",
+    "deleteImageConfirm": "Are you sure you want to delete {{filename}}? This action cannot be undone.",
     "placeholder": {
       "title": "Enter prompt title...",
       "description": "Optional description...",
@@ -90,6 +108,7 @@
     "tags": "Tags",
     "addTag": "Add Tag",
     "createTag": "Create Tag",
+    "createTagDescription": "Create a new tag to organize your prompts",
     "editTag": "Edit Tag",
     "deleteTag": "Delete Tag",
     "color": "Color",
@@ -188,6 +207,7 @@
   },
   "notifications": {
     "promptCreated": "Prompt created successfully",
+    "promptCreatedDesc": "Your prompt has been created",
     "promptUpdated": "Prompt updated successfully",
     "promptDeleted": "Prompt deleted successfully",
     "versionCreated": "Version created successfully",
@@ -197,7 +217,8 @@
     "executionStarted": "Execution started",
     "executionCompleted": "Execution completed successfully",
     "executionFailed": "Execution failed",
-    "error": "An error occurred"
+    "error": "An error occurred",
+    "success": "Success"
   },
   "errors": {
     "required": "This field is required",
@@ -207,7 +228,12 @@
     "notFound": "Not found",
     "serverError": "Server error occurred",
     "networkError": "Network error occurred",
-    "createFailed": "Failed to create"
+    "createFailed": "Failed to create",
+    "uploadFailed": "Failed to upload image",
+    "fileTooLarge": "File too large",
+    "invalidFileType": "Invalid file type",
+    "error": "Error",
+    "tagAlreadyExists": "A tag with this name already exists"
   },
   "dialogs": {
     "deletePrompt": {

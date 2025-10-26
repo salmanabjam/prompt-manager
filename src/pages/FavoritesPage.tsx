@@ -1,12 +1,11 @@
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
-import { Loader2, Star, FileText, Code, Image, Video, Music, Copy, Edit, Trash2 } from 'lucide-react';
+import { Loader2, Star, FileText, Code, Image, Video, Music } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../components/ui/card';
-import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
 import { cn } from '../lib/utils';
 import { formatRelativeTime } from '../lib/utils';
-import { useEffect, useState } from 'react';
+import { useFavoritesStore } from '../store/favoritesStore';
 
 interface Prompt {
   id: string;
@@ -29,27 +28,22 @@ async function fetchPrompts(): Promise<Prompt[]> {
 
 export function FavoritesPage() {
   const { t } = useTranslation();
-  const [favorites, setFavorites] = useState<Set<string>>(new Set());
+  
+  // استفاده از Zustand store برای مدیریت favorites
+  const favorites = useFavoritesStore((state) => state.favorites);
+  const getFavoritesArray = useFavoritesStore((state) => state.getFavoritesArray);
 
   const { data: allPrompts, isLoading } = useQuery({
     queryKey: ['prompts'],
     queryFn: fetchPrompts,
   });
 
-  // Load favorites from localStorage
-  useEffect(() => {
-    const stored = localStorage.getItem('favorites');
-    if (stored) {
-      try {
-        setFavorites(new Set(JSON.parse(stored)));
-      } catch (e) {
-        console.error('Failed to load favorites:', e);
-      }
-    }
-  }, []);
-
-  // Filter prompts to show only favorites
+  // فیلتر کردن prompts بر اساس favorites
   const favoritePrompts = allPrompts?.filter(p => favorites.has(p.id)) || [];
+  
+  console.log('[FavoritesPage] Favorites IDs:', getFavoritesArray());
+  console.log('[FavoritesPage] All prompts count:', allPrompts?.length);
+  console.log('[FavoritesPage] Favorite prompts count:', favoritePrompts.length);
 
   const getTypeIcon = (type: string) => {
     switch (type) {

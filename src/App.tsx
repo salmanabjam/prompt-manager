@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSettingsStore } from './store/settingsStore';
+import { migrateFavorites } from './store/migrateFavorites';
 import { Sidebar } from './components/Sidebar';
 import { Header } from './components/Header';
 import { LibraryPage } from './pages/LibraryPage';
@@ -10,12 +11,16 @@ import { StatisticsPage } from './pages/StatisticsPage';
 import { LogsPage } from './pages/LogsPage';
 import { CreatePromptDialog } from './components/CreatePromptDialog';
 import { Toaster } from 'sonner';
-import './i18n/config';
 import './styles.css';
 
 function App() {
   const { i18n } = useTranslation();
   const { theme, language, density, currentPage } = useSettingsStore();
+
+  useEffect(() => {
+    // Migrate old favorites to Zustand (only runs once)
+    migrateFavorites();
+  }, []);
 
   useEffect(() => {
     // Apply theme

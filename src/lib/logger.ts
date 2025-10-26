@@ -101,6 +101,9 @@ class Logger {
 
   private persistLogs() {
     try {
+      if (typeof localStorage === 'undefined') {
+        return;
+      }
       const logsToStore = this.logs.slice(-100); // Store only last 100
       localStorage.setItem('app_logs', JSON.stringify(logsToStore));
     } catch (error) {
@@ -215,12 +218,19 @@ class Logger {
   // Clear logs
   clearLogs() {
     this.logs = [];
-    localStorage.removeItem('app_logs');
+    if (typeof localStorage !== 'undefined') {
+      localStorage.removeItem('app_logs');
+    }
   }
 
   // Load persisted logs
   loadPersistedLogs() {
     try {
+      // Check if localStorage is available (browser only)
+      if (typeof localStorage === 'undefined') {
+        return;
+      }
+      
       const stored = localStorage.getItem('app_logs');
       if (stored) {
         const parsed = JSON.parse(stored);

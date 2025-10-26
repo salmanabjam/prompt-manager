@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from './ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from './ui/dialog';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { Button } from './ui/button';
@@ -40,7 +40,16 @@ export function CreateTagDialog({ isOpen, onClose, onSuccess }: CreateTagDialogP
       });
 
       if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
         logger.apiError('POST', '/api/tags', new Error(`HTTP ${response.status}`));
+        
+        // Handle duplicate tag name
+        if (response.status === 409) {
+          toast.error(t('errors.tagAlreadyExists'));
+          setIsSubmitting(false);
+          return;
+        }
+        
         throw new Error('Failed to create tag');
       }
 
@@ -70,6 +79,9 @@ export function CreateTagDialog({ isOpen, onClose, onSuccess }: CreateTagDialogP
       <DialogContent>
         <DialogHeader>
           <DialogTitle>{t('tag.createTag')}</DialogTitle>
+          <DialogDescription>
+            {t('tag.createTagDescription')}
+          </DialogDescription>
         </DialogHeader>
 
         <form onSubmit={handleSubmit} className="space-y-4">
